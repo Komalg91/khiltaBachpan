@@ -127,8 +127,8 @@ tr:nth-child(even) {
           <a class="active" href="index.php">Home</a>
         </div>
       </div>
-      <input type="button" id="insbutton" value="insert child"> <br>
-      <button class="collapsible">Insert Child Details</button>
+      <input type="button" class="collapsible" id="insbutton" value="insert child"> <br>
+      <button class="collapsible" id="insbutton" >Insert Child Details</button>
 
 
 
@@ -159,7 +159,7 @@ tr:nth-child(even) {
     
     
     
-  <input type="button" id="inspic" value="insert pic" style="background:'green';"> <br>
+  <input type="button" id="inspic" value="insert pic" class="collapsible"> <br>
   
     <div id="dialog2" title="CHILD PIC">
         <strong> Select Child : </strong> 
@@ -239,7 +239,8 @@ tr:nth-child(even) {
       </tr>
     </table></p>
 </div>
-<button class="collapsible">See Adoption Requests</button>
+<button class="collapsible">See Sponsor Requests</button>
+
 <div class="content">
   <p><table>
       <tr>
@@ -248,24 +249,36 @@ tr:nth-child(even) {
         <th>Contact</th>
         <th>Cild name</th>
       </tr>
-      <tr>
-        <td>Ramesh</td>
-        <td>ram@fivestar.com</td>
-        <td>010569429</td>
+
+
+<?php
+
+      
+      $query="select * from sponsor";
+      $query_run=mysqli_query($con,$query);
+      $number=mysqli_num_rows($query_run);
+      $query2="select name from child_details cd join sponsor s on s.id=cd.id";
+      //$query_run2=mysqli_query($con,$query2);
+      //$number=mysqli_num_rows($query_run2);
+
+      if ($query_run)
+            {
+                      // Fetch one and one row
+      while ($row=mysqli_fetch_row($query_run)){
+        //$query2="select name from child_details";
+
+      echo "  <tr>
+        <td> $row[1]</td>
+        <td>$row[3]</td>
+        <td> $row[2]</td>
         <td>ram</td>
       </tr>
-      <tr>
-        <td>Suresh</td>
-        <td>sur@fivestar.com</td>
-        <td>011374639</td>
-        <td>shyam</td>
-      </tr>
-      <tr>
-        <td>Mukesh</td>
-        <td>muku@fivestar.com</td>
-        <td>110374308</td>
-        <td>baburao</td>
-      </tr>
+              ";
+              }}?>
+
+
+     
+     
     </table></p>
 </div>
 
